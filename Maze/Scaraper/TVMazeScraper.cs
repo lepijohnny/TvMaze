@@ -30,8 +30,6 @@ namespace Maze.Scaraper
 
             var tvShows = await Retry(_tvShowHttpClient, "shows");
 
-            var tvShowAdded = new List<TVShow>();
-
             HashSet<int> trackedActorIDs = new HashSet<int>();
 
             // iterate over the shows and get all the casts
@@ -40,8 +38,6 @@ namespace Maze.Scaraper
                 var actors = await Retry(_actorHttpClient, $"shows/{tvShow.Id}/cast");
 
                 var actorsAdded = await AddCastToTVShow(tvShow, actors.Distinct(new SimpleIDComparer<Actor>(x => x.Id)), trackedActorIDs);
-
-                tvShowAdded.Add(tvShow);
 
                 await _unitOfWork.Actors.AddRangeAsync(actorsAdded);
 
