@@ -46,11 +46,11 @@ namespace Maze.Scaraper
                 await _unitOfWork.Actors.AddRangeAsync(actorsAdded);
 
                 trackedActorIDs.AddRange(actorsAdded.Select(a => a.Id));
-            }
-             
-            await _unitOfWork.TVShows.AddRangeAsync(tvShowAdded);
 
-            await _unitOfWork.CommitAsync();
+                await _unitOfWork.TVShows.AddRangeAsync(new[] { tvShow });
+
+                await _unitOfWork.CommitAsync();
+            }
 
             _logger.LogInformation("Scrapper finished ...");
         }
