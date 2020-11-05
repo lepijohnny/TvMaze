@@ -50,11 +50,13 @@ The model has been many-to-many relationship between TVShow and Actor with Joine
 
 I have added just a minimal number of properties as specified, more properties can be added on database and deserialization part.
 
-## Pagination
+## Pagination and Ordering
 
 The default page size is 20, it cannot be changed, it is easy though but I kept it simple. Each response will have additional headers to notify user about the pagination:
 - X-Pagination-Last: 20
 - X-Pagination-Total: 240
+
+In the case if the data are incomplete, birthday null, the `DateTime.Min` will be inserted and these actors will appear at the front.
 
 ## HttpRateLimiter
 
