@@ -50,6 +50,12 @@ The model has been many-to-many relationship between TVShow and Actor with Joine
 
 I have added just a minimal number of properties as specified, more properties can be added on database and deserialization part.
 
+## Pagination
+
+The default page size is 20, it cannot be changed, it is easy though but I kept it simple. Each response will have additional headers to notify user about the pagination:
+- X-Pagination-Last: 20
+- X-Pagination-Total: 240
+
 ## HttpRateLimiter
 
 The Http rate limiter has been implemented to protect agains api.tvmaze.com limitation. Each time TooManyRequests Http response is received the rate limiter is notified and it increase the timeout guard by 1 second up until 10. In order to be resiliant to these errors additional retry mechanism has been added.
